@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management</title>
+</head>
+<body>
+    <h1>Student Workshop registration</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Student</button>
+    </form>
+    <hr>
+    {% for s in students %}
+    <p>
+        {{s.students_id}} - {{s.name}} - {{s.workshop}} - {{s.statue}}
+        <a href="{% url 'edit' s.id %}">Edit</a>
+        <a href="{% url 'delete' s.id %}">Delete</a>
+    </p>
+    {% empty %}
+    <p>No students registered.</p>
+    {% endfor %}
+</body>
+</html>
